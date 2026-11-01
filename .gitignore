@@ -1,0 +1,5 @@
+build16/
+*.tmp
+*.exe
+*.obj
+*.o
