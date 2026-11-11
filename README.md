@@ -83,7 +83,7 @@ Inverse-distance gridding, where each node uses its 6 nearest points:
 | 1,200 points, 20×20 | 21.7 s | 1.4 s |
 | 60,000 points, 100×100 | about 3 days (estimated) | 2 min 46 s (measured) |
 
-In the 60,000-point run, 111 s went to sorting points into cells, because random cells defeat the cache. That's the first thing to improve, and it will dominate larger jobs. A 200,000-point run took longer than 9 minutes and was never finished.
+In the 60,000-point run, 111 s went to sorting points into cells, because random cells defeat the cache. A 200,000-point run took longer than 9 minutes and was never finished. The [XYZ2MES example](examples/xyz2mes) fixes this by sorting in two passes, first into bands and then within each band, so the writes stay in the cache. It grids 494,816 points from a 14 MB file.
 
 ### How far to trust these numbers
 
@@ -91,6 +91,14 @@ In the 60,000-point run, 111 s went to sorting points into cells, because random
 - With only 8 pages (32 KB), random reads on this emulated disk were slower than the old method: each miss reads a whole page, and seeks cost nothing here. Random access across data much larger than the pool is the worst case.
 - **It has not been run on real hardware.** Tests ran in DOSBox-X, including with the CPU set to 8086.
 - Plain array code is about 4× faster than `DiskArray` when all the data fits in memory, as measured with a simple gridding loop, so don't use it for data that fits.
+
+## Example: a DOS program with a GUI
+
+[examples/xyz2mes](examples/xyz2mes) is a complete DOS program that uses DiskArray with the [DOSGUI](https://github.com/ferrellsl/DOSGUI) library. It reads ASCII X Y Z survey points, grids them by inverse distance weighting, and writes a qwtplot3d mesh. It runs at 800×600 with file dialogs, a progress bar with Cancel, and a settings window.
+
+It handled a 14 MB lidar file (494,816 points) in 640 KB. In DOSBox-X at max cycles it took about 5 minutes. The output matches an independent reference computation.
+
+![XYZ2MES gridding](examples/xyz2mes/screenshots/gridding.png)
 
 ## Testing
 
