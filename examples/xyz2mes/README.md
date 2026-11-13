@@ -39,7 +39,7 @@ With less memory the cache simply gets smaller. The results are the same, but it
 
 ## Results
 
-The result for the Putnam Park bare-earth test file, shown in qwtplot3d:
+The result for the Putnam Park bare-earth test file, shown in qwtplot3d.  The image clearly shows the pond, dam, roads and trails:
 
 <img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/88652680-8cc6-4913-b30b-8e2d0fb71a26" />
 
