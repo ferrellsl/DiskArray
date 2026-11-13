@@ -6,7 +6,8 @@ It reads ASCII X Y Z points, grids them by inverse distance weighting, and write
 
 The largest test file was 494,816 lidar points, 14 MB of text, about 22 times the memory DOS can give a program. Points that size can never sit in conventional memory, but here they don't have to.
 
-![The main screen with a file loaded](screenshots/main.png)
+<img width="2560" height="1440" alt="image" src="https://github.com/user-attachments/assets/d63ccf04-b873-458e-b3cf-0efa3349fa3e" />
+
 
 ## What it shows
 
